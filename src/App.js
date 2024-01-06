@@ -1,5 +1,6 @@
 import Registration from "./components/registration";
 import LoginForm from "./components/Login/login";
+import AlternateTablets from "./components/AlternateTablets";
 import "./App.css";
 
 import { Component } from "react";
@@ -9,6 +10,7 @@ class App extends Component {
   state = {
     registerClick: false,
     loginStatus: false,
+    alternateTabletStatus: false,
     username: "",
     name: "",
     password: "",
@@ -77,6 +79,15 @@ class App extends Component {
     this.setState({ registerClick: false, loginStatus: !loginStatus });
   };
 
+  onAlternateTabletClick = () => {
+    const { alternateTabletStatus } = this.state;
+    this.setState({
+      registerClick: false,
+      loginStatus: false,
+      alternateTabletStatus: !alternateTabletStatus,
+    });
+  };
+
   updateUsername = (username) => {
     this.setState({ username: username });
   };
@@ -97,13 +108,14 @@ class App extends Component {
   };
 
   render() {
-    const { registerClick, loginStatus } = this.state;
+    const { registerClick, loginStatus, alternateTabletStatus } = this.state;
 
     return (
       <div>
         <NavigationBar
           onRegistrationClick={this.onRegistrationClick}
           onLoginClick={this.onLoginClick}
+          onAlternateTabletClick={this.onAlternateTabletClick}
         />
         {registerClick ? (
           <Registration
@@ -130,6 +142,7 @@ class App extends Component {
         ) : (
           <></>
         )}
+        {alternateTabletStatus ? <AlternateTablets /> : <></>}
       </div>
     );
   }

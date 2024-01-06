@@ -3,12 +3,16 @@
 import React from "react";
 
 const NavBar = (props) => {
-  const { onRegistrationClick, onLoginClick } = props;
+  const { onRegistrationClick, onLoginClick, onAlternateTabletClick } = props;
   const registrationClicked = () => {
     onRegistrationClick();
   };
   const loginClicked = () => {
     onLoginClick();
+  };
+
+  const alternateTabletsClicked = () => {
+    onAlternateTabletClick();
   };
   const navBarStyle = {
     backgroundColor: "#3498db",
@@ -37,7 +41,9 @@ const NavBar = (props) => {
         Login
       </button>
       <button style={buttonStyle}>Nearby Pharmacies</button>
-      <button style={buttonStyle}>Alternate Tablet Search</button>
+      <button style={buttonStyle} onClick={alternateTabletsClicked}>
+        Alternate Tablet Search
+      </button>
     </div>
   );
 };

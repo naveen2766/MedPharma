@@ -1,6 +1,8 @@
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
+const fs = require("fs");
+const { parse } = require("csv-parse");
 
 const { open } = require("sqlite");
 const sqlite3 = require("sqlite3");
@@ -54,5 +56,26 @@ app.post("/login", async (req, res) => {
     if (dbUser.password === password)
       res.json({ message: "login successful", dbUser });
     else res.json({ message: "Invalid username/password" });
+  }
+});
+
+app.get("/csvdata", async (req, res) => {
+  try {
+    const csvData = [];
+    fs.createReadStream("./csvData.csv")
+      .pipe(parse({ delimiter: ",", from_line: 2 }))
+      .on("data", function (rowData) {
+        csvData.push(rowData);
+      })
+      .on("error", function (error) {
+        console.log(error.message);
+        res.status(500).json({ error: "Error parsing CSV data" });
+      })
+      .on("end", function () {
+        res.json({ csvData });
+      });
+  } catch (error) {
+    console.error("Error reading CSV file:", error);
+    res.status(500).json({ error: "Error reading CSV data" });
   }
 });
