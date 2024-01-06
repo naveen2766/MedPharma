@@ -34,9 +34,25 @@ app.post("/reg", async (req, res) => {
   const { name, username, email, password, number } = data;
   console.log(name, username, password);
   const addUser = `
-                insert into user_details(username,name,email,mobile_number,password) 
-                values('${username}','${name}','${email}',${8919},'${password}');`;
+                insert into user_details(username,name,email,password) 
+                values('${username}','${name}','${email}','${password}');`;
 
   const dbResponse = await db.run(addUser);
   res.json({ message: "Data stored successfully." });
+});
+
+app.post("/login", async (req, res) => {
+  const { data } = req.body;
+  const { username, password } = data;
+  console.log("details ", data);
+
+  const selectUserQuery = `SELECT * FROM user_details WHERE username = '${username}'`;
+  const dbUser = await db.get(selectUserQuery);
+  if (dbUser === undefined) {
+    res.json({ status: 400, message: "User not found" });
+  } else {
+    if (dbUser.password === password)
+      res.json({ message: "login successful", dbUser });
+    else res.json({ message: "Invalid username/password" });
+  }
 });

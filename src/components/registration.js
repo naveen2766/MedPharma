@@ -84,7 +84,7 @@ const Registration = (props) => {
           Mobile Number
         </label>
         <input
-          type="number"
+          type="text"
           className="form-control"
           id="number"
           onChange={onNumberChange}

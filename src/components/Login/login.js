@@ -3,13 +3,26 @@ import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import "./login.css";
 
 const LoginForm = (props) => {
-  const { loginStatus, onRegistrationClick } = props;
+  const {
+    loginStatus,
+    onRegistrationClick,
+    submittedLoginForm,
+    updateUsername,
+    updatePassword,
+  } = props;
   const hide = loginStatus ? "" : "hide-login-form";
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log("Login button clicked");
-    // Add your login logic here
+    submittedLoginForm();
+  };
+
+  const onUsernameChange = (event) => {
+    updateUsername(event.target.value);
+  };
+
+  const onPasswordChange = (event) => {
+    updatePassword(event.target.value);
   };
 
   const anchorRegistrationClicked = () => {
@@ -22,13 +35,23 @@ const LoginForm = (props) => {
         <label htmlFor="loginUsername" className="form-label">
           Username
         </label>
-        <input type="text" className="form-control" id="loginUsername" />
+        <input
+          type="text"
+          className="form-control"
+          id="loginUsername"
+          onChange={onUsernameChange}
+        />
       </div>
       <div className="mb-3">
         <label htmlFor="loginPassword" className="form-label">
           Password
         </label>
-        <input type="password" className="form-control" id="loginPassword" />
+        <input
+          type="password"
+          className="form-control"
+          id="loginPassword"
+          onChange={onPasswordChange}
+        />
       </div>
       <button className="button" type="button" onClick={onSubmit}>
         Login

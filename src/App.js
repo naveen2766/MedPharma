@@ -23,11 +23,6 @@ class App extends Component {
 
   submittedRegistrationForm = async () => {
     const { username, password, name, number, email } = this.state;
-    // if (username === "") return "username cannot be empty";
-    // else if (password === "") return "password cannot be empty";
-    // else if (name === "") return "name cannot be empty";
-    // else if (number === "" || typeof number !== typeof 2)
-    //   return "number cannot be empty or number input should be integers";
     const inputData = {
       username,
       password,
@@ -36,6 +31,30 @@ class App extends Component {
       email,
     };
     await fetch("http://localhost:5000/reg", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        data: inputData,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("server response:", data);
+      })
+      .catch((err) => {
+        console.log("Error-w: ", err);
+      });
+  };
+
+  submittedLoginForm = async () => {
+    const { username, password } = this.state;
+    const inputData = {
+      username,
+      password,
+    };
+    await fetch("http://localhost:5000/login", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -78,15 +97,7 @@ class App extends Component {
   };
 
   render() {
-    const {
-      registerClick,
-      loginStatus,
-      //   name,
-      //   number,
-      //   email,
-      //   password,
-      //   username,
-    } = this.state;
+    const { registerClick, loginStatus } = this.state;
 
     return (
       <div>
@@ -112,6 +123,9 @@ class App extends Component {
           <LoginForm
             loginStatus={loginStatus}
             onRegistrationClick={this.onRegistrationClick}
+            submittedLoginForm={this.submittedLoginForm}
+            updateUsername={this.updateUsername}
+            updatePassword={this.updatePassword}
           />
         ) : (
           <></>
