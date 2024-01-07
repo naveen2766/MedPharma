@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import "./index.css";
 import TabletItem from "./TabletItem";
+import { v4 as uuid } from "uuid";
 
 class AlternateTablets extends Component {
   constructor(props) {
@@ -46,7 +47,7 @@ class AlternateTablets extends Component {
         <label htmlFor="tablet">Enter tablet</label>
         <input type="text" id="tablet" onChange={this.onChangeTablet} />
         {filteredTablets.map((item, index) => (
-          <TabletItem key={index} tabletDetails={item} />
+          <TabletItem key={uuid()} tabletDetails={item} />
         ))}
       </div>
     );

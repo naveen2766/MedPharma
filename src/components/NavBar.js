@@ -1,6 +1,7 @@
 // NavBar.js
 
 import React from "react";
+import "./NavBar.css";
 
 const NavBar = (props) => {
   const { onRegistrationClick, onLoginClick, onAlternateTabletClick } = props;
@@ -34,6 +35,7 @@ const NavBar = (props) => {
 
   return (
     <div style={navBarStyle}>
+      <img src="./logo.png" alt="logo" className="logo" />
       <button style={buttonStyle} onClick={registrationClicked}>
         Registration
       </button>

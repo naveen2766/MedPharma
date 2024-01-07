@@ -1,4 +1,5 @@
 import "./index.css";
+import { v4 as uuid } from "uuid";
 
 const TabletItem = (props) => {
   const { tabletDetails } = props;
@@ -19,7 +20,7 @@ const TabletItem = (props) => {
   return (
     <div className="each-tablet-container">
       <div>
-        <h4>Alternantive tablets</h4>
+        <h4>Alternative tablets</h4>
         <ul className="alter-tablets-container">
           {filteredAltTablets.map((eachItem) => (
             <li>{eachItem}</li>

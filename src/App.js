@@ -109,7 +109,10 @@ class App extends Component {
 
   render() {
     const { registerClick, loginStatus, alternateTabletStatus } = this.state;
-
+    const hide_homepage =
+      registerClick === true || loginStatus === true || alternateTabletStatus
+        ? "hide-homepage"
+        : "";
     return (
       <div>
         <NavigationBar
@@ -117,6 +120,10 @@ class App extends Component {
           onLoginClick={this.onLoginClick}
           onAlternateTabletClick={this.onAlternateTabletClick}
         />
+        <div className={`homepage-container ${hide_homepage}`}>
+          <h1 className="heading">MED PHARMA </h1>
+          <p>Alternative Tablet Search with their Side Effects & Uses</p>
+        </div>
         {registerClick ? (
           <Registration
             updateUsername={this.updateUsername}
@@ -143,6 +150,17 @@ class App extends Component {
           <></>
         )}
         {alternateTabletStatus ? <AlternateTablets /> : <></>}
+        <div className="website-information">
+          <p>
+            The project aims to provide users with information about alternative
+            tablets, their uses, and potential side effects. Users can search
+            for alternative tablets based on their current prescriptions or
+            medical conditions.
+          </p>
+        </div>
+        <div class="footer">
+          <p>&copy; 2024 Your Website Name. All rights reserved.</p>
+        </div>
       </div>
     );
   }
