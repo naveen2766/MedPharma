@@ -8,13 +8,15 @@ form {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Light shadow effect */
+  background-color: lightseagreen;
 }
 
 /* Styles for form elements */
 .form-label {
   font-size: 16px;
   margin-bottom: 8px;
-  color: #333; /* Dark gray text color */
+  color: white;
+  font-weight: 500; /* Dark gray text color */
 }
 
 .form-control {
@@ -56,4 +58,10 @@ form {
 /* Hide the registration form initially */
 .hide-registration-form {
   display: none;
+}
+.body {
+  margin-top: -3em;
+  height: 100%;
+  width: 100%;
+  background-color: black;
 }

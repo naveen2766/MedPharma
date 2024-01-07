@@ -1,5 +1,4 @@
 import "./index.css";
-import { v4 as uuid } from "uuid";
 
 const TabletItem = (props) => {
   const { tabletDetails } = props;

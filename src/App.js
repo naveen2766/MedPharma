@@ -16,6 +16,7 @@ class App extends Component {
     password: "",
     email: "",
     number: "",
+    isSignedIn: false,
   };
 
   onRegistrationClick = () => {
@@ -68,6 +69,7 @@ class App extends Component {
       .then((res) => res.json())
       .then((data) => {
         console.log("server response:", data);
+        this.setState({ isSignedIn: true });
       })
       .catch((err) => {
         console.log("Error-w: ", err);
@@ -108,17 +110,28 @@ class App extends Component {
   };
 
   render() {
-    const { registerClick, loginStatus, alternateTabletStatus } = this.state;
+    const {
+      registerClick,
+      isSignedIn,
+      loginStatus,
+      alternateTabletStatus,
+    } = this.state;
     const hide_homepage =
       registerClick === true || loginStatus === true || alternateTabletStatus
         ? "hide-homepage"
         : "";
+    const webInfo =
+      registerClick === true || loginStatus === true || alternateTabletStatus
+        ? "hide-webInfo"
+        : "";
+    const hideLoginRegButton = isSignedIn ? "hide-webInfo" : "";
     return (
       <div>
         <NavigationBar
           onRegistrationClick={this.onRegistrationClick}
           onLoginClick={this.onLoginClick}
           onAlternateTabletClick={this.onAlternateTabletClick}
+          hideLoginRegButton={hideLoginRegButton}
         />
         <div className={`homepage-container ${hide_homepage}`}>
           <h1 className="heading">MED PHARMA </h1>
@@ -149,17 +162,19 @@ class App extends Component {
         ) : (
           <></>
         )}
+
         {alternateTabletStatus ? <AlternateTablets /> : <></>}
-        <div className="website-information">
-          <p>
+
+        <div className={`website-information ${webInfo}`}>
+          <p className={`web-info ${webInfo}`}>
             The project aims to provide users with information about alternative
             tablets, their uses, and potential side effects. Users can search
             for alternative tablets based on their current prescriptions or
             medical conditions.
           </p>
         </div>
-        <div class="footer">
-          <p>&copy; 2024 Your Website Name. All rights reserved.</p>
+        <div className={`footer ${webInfo}`}>
+          <p>&copy; 2024 Med Pharma. All rights reserved.</p>
         </div>
       </div>
     );

@@ -45,9 +45,11 @@ body {
 
 .hide-homepage {
   display: none;
-  margin-left: -5vw;
 }
 
+.hide-webInfo {
+  display: none;
+}
 .heading {
   font-size: 50px;
 }
@@ -61,4 +63,15 @@ body {
   position: relative;
   bottom: 0;
   width: 100%;
+}
+.website-information {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+}
+.web-info {
+  font-size: 24px;
+  font-family: "Bree Serif";
 }

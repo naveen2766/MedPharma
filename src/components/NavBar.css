@@ -1,5 +1,39 @@
+/* NavBar.css */
+
 .logo {
-  height: 4vh;
-  width: 8vw;
-  align-self: flex-start;
+  height: 100px;
+  margin-right: auto;
+}
+.navBarStyle {
+  height: 12vh;
+  background-color: #3498db;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.buttonStyle {
+  padding: 10px;
+  margin: 0 10px;
+  border-radius: 5px;
+  color: #ffffff;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.button-nav {
+  padding: 10px;
+  margin: 0 10px;
+  border-radius: 5px;
+  color: #ffffff;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-nav:hover {
+  background-color: white;
+  color: black;
 }
