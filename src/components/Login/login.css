@@ -4,11 +4,20 @@ form {
   width: 20vw;
   justify-content: center;
   align-items: center;
-  background-image: url("https://i.postimg.cc/k5jCg3vn/login-bg.png");
   background-size: cover;
   height: 100vh;
   width: 100vw;
+  color: black;
   /* background-color: red; */
+}
+.form-control {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: black;
 }
 .hide-login-form {
   display: none;
@@ -16,10 +25,18 @@ form {
 .anchor-button {
   background-color: transparent;
   border: 0px;
-
   margin: 10px;
 }
 span {
   text-decoration: underline;
   color: blue;
+}
+label {
+  color: black;
+}
+.form-label {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: black;
+  font-weight: 500; /* Dark gray text color */
 }
