@@ -5,8 +5,8 @@ const TabletItem = (props) => {
   let filteredAltTablets = [];
   let filteredSideEffects = [];
   let filteredUses = [];
-  const chemical = tabletDetails[54];
-  const habitForming = tabletDetails[55];
+  //   const chemical = tabletDetails[54];
+  //   const habitForming = tabletDetails[55];
 
   for (let i = 2; i < tabletDetails.length; i += 1) {
     if (i <= 6) filteredAltTablets.push(tabletDetails[i]);
@@ -18,6 +18,10 @@ const TabletItem = (props) => {
   }
   return (
     <div className="each-tablet-container">
+      <div className="tablet-container">
+        <h4>Tablet</h4>
+        <p>{tabletDetails[1]}</p>
+      </div>
       <div>
         <h4>Alternative tablets</h4>
         <ul className="alter-tablets-container">

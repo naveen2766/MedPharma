@@ -9,7 +9,7 @@ const Registration = (props) => {
     updateUsername,
     updateEmail,
     updateName,
-    updateNumber,
+    // updateNumber,
     updatePassword,
     submittedRegistrationForm,
   } = props;
@@ -34,19 +34,20 @@ const Registration = (props) => {
     updatePassword(event.target.value);
   };
 
-  const onNumberChange = (event) => {
-    updateNumber(parseInt(event.target.value));
-  };
+  //   const onNumberChange = (event) => {
+  //     updateNumber(parseInt(event.target.value));
+  //   };
 
   const onEmailChange = (event) => {
     updateEmail(event.target.value);
   };
 
   return (
-    <div className="body">
-      <form className={`container mt-5 ${hide}`} onSubmit={onSubmit}>
+    <div className="container-reg">
+      <form className={`reg-form ${hide}`} onSubmit={onSubmit}>
+        <h1 className="reg-heading">Registration</h1>
         <div className="mb-3">
-          <label htmlFor="username" className="form-label">
+          <label htmlFor="username" className="form-label-reg">
             Username
           </label>
           <input
@@ -59,7 +60,7 @@ const Registration = (props) => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="name" className="form-label">
+          <label htmlFor="name" className="form-label-reg">
             Full Name
           </label>
           <input
@@ -71,7 +72,7 @@ const Registration = (props) => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="email" className="form-label">
+          <label htmlFor="email" className="form-label-reg">
             Email
           </label>
           <input
@@ -83,19 +84,7 @@ const Registration = (props) => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="number" className="form-label">
-            Mobile Number
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="number"
-            onChange={onNumberChange}
-            placeholder="Enter Your Mobile Number"
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
+          <label htmlFor="password" className="form-label-reg">
             Password
           </label>
           <input
@@ -106,17 +95,23 @@ const Registration = (props) => {
             placeholder="Enter Password"
           />
         </div>
-        <button className="button" type="button" onClick={onSubmit}>
+        <button className="button-reg" type="button" onClick={onSubmit}>
           Submit
         </button>
         <button
-          className="anchor-button"
+          className="anchor-button-reg"
           type="button"
           onClick={anchorLoginClicked}
         >
           Already have an account? <span>Login</span>
         </button>
+        {/* <p className="err-msg">{errMsg}</p> */}
       </form>
+      <img
+        src="https://i.postimg.cc/Zn4q00ZV/12445724-4967621.jpg"
+        alt="registration"
+        className="reg-image"
+      />
     </div>
   );
 };

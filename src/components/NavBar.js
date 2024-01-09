@@ -7,7 +7,13 @@ const NavBar = (props) => {
     onLoginClick,
     onAlternateTabletClick,
     hideLoginRegButton,
+    hideAltTabletSearchButton,
+    logoutClicked,
   } = props;
+
+  const logOut = () => {
+    logoutClicked();
+  };
   const registrationClicked = () => {
     onRegistrationClick();
   };
@@ -38,12 +44,20 @@ const NavBar = (props) => {
       >
         Login
       </button>
-      <button className="button-nav buttonStyle">Nearby Pharmacies</button>
+      <button className={`button-nav buttonStyle ${hideAltTabletSearchButton}`}>
+        Nearby Pharmacies
+      </button>
       <button
-        className="buttonStyle button-nav"
+        className={`buttonStyle button-nav ${hideAltTabletSearchButton}`}
         onClick={alternateTabletsClicked}
       >
         Alternate Tablet Search
+      </button>
+      <button
+        className={`buttonStyle button-nav ${hideAltTabletSearchButton}`}
+        onClick={logOut}
+      >
+        Log Out
       </button>
     </div>
   );

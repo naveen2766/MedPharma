@@ -42,10 +42,20 @@ class AlternateTablets extends Component {
     }
 
     return (
-      <div className="container">
-        <h1>Search Alternative Tablet</h1>
-        <label htmlFor="tablet">Enter tablet</label>
-        <input type="text" id="tablet" onChange={this.onChangeTablet} />
+      <div className="container-alt-tab-search">
+        <h1 className="alt-search-heading">Search Alternative Tablet</h1>
+        <div className="search-container">
+          <label htmlFor="tablet" className="search-label">
+            Enter tablet
+          </label>
+          <input
+            type="text"
+            id="tablet"
+            className="search-input"
+            placeholder="Enter Tablet Name"
+            onChange={this.onChangeTablet}
+          />
+        </div>
         {filteredTablets.map((item, index) => (
           <TabletItem key={uuid()} tabletDetails={item} />
         ))}

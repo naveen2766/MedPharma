@@ -1,14 +1,25 @@
-form {
+.container-login {
+  background-color: #9ba9eb;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.form-login {
   display: flex;
   flex-direction: column;
   width: 20vw;
   justify-content: center;
   align-items: center;
   background-size: cover;
-  height: 100vh;
-  width: 100vw;
+  height: 60vh;
+  width: 40vw;
   color: black;
-  /* background-color: red; */
+  background-color: #454f84;
+  padding: 20px;
+  border-radius: 20px;
 }
 .form-control {
   width: 100%;
@@ -19,24 +30,55 @@ form {
   box-sizing: border-box;
   color: black;
 }
-.hide-login-form {
+/* .hide-login-form {
   display: none;
-}
-.anchor-button {
+} */
+.anchor-button-login {
   background-color: transparent;
+  color: white;
   border: 0px;
   margin: 10px;
+  text-decoration: none;
 }
 span {
   text-decoration: underline;
-  color: blue;
+  color: violet;
+  font-size: 18px;
+  margin-left: 10px;
 }
 label {
   color: black;
 }
-.form-label {
+.login-form-label {
   font-size: 16px;
   margin-bottom: 8px;
   color: black;
   font-weight: 500; /* Dark gray text color */
+  color: white;
+  font-weight: 300;
+  font-family: "Bree Serif";
+}
+
+.login-image {
+  height: 75vh;
+  width: 30vw;
+}
+.login-heading {
+  color: white;
+  font-weight: 900;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.error-msg {
+  color: red;
+  font-size: 14px;
+  font-weight: 700;
+}
+.button-login {
+  background-color: #007bff; /* Blue button color */
+  color: #fff; /* White text color */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
 }

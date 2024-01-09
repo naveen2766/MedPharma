@@ -9,6 +9,9 @@ const LoginForm = (props) => {
     submittedLoginForm,
     updateUsername,
     updatePassword,
+    errMsg,
+    username,
+    password,
   } = props;
   const hide = loginStatus ? "" : "hide-login-form";
 
@@ -30,40 +33,53 @@ const LoginForm = (props) => {
   };
 
   return (
-    <form className={`container mt-5 ${hide}`} onSubmit={onSubmit}>
-      <div className="mb-3">
-        <label htmlFor="loginUsername" className="form-label">
-          Username
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="loginUsername"
-          onChange={onUsernameChange}
-        />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="loginPassword" className="form-label">
-          Password
-        </label>
-        <input
-          type="password"
-          className="form-control"
-          id="loginPassword"
-          onChange={onPasswordChange}
-        />
-      </div>
-      <button className="button" type="button" onClick={onSubmit}>
-        Login
-      </button>
-      <button
-        className="anchor-button"
-        type="button"
-        onClick={anchorRegistrationClicked}
-      >
-        Don't have an account? <span>Register</span>
-      </button>
-    </form>
+    <div className="container-login">
+      <form className={`form-login ${hide}`} onSubmit={onSubmit}>
+        <h1 className="login-heading">Login</h1>
+        <div className="mb-3">
+          <label htmlFor="loginUsername" className="login-form-label">
+            Username
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="loginUsername"
+            placeholder="Enter Username"
+            onChange={onUsernameChange}
+            value={username}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="loginPassword" className="login-form-label">
+            Password
+          </label>
+          <input
+            type="password"
+            className="form-control"
+            id="loginPassword"
+            onChange={onPasswordChange}
+            placeholder="Enter Password"
+            value={password}
+          />
+        </div>
+        <button className="button-login" type="button" onClick={onSubmit}>
+          Login
+        </button>
+        <button
+          className="anchor-button-login"
+          type="button"
+          onClick={anchorRegistrationClicked}
+        >
+          <p className="error-msg">{errMsg}</p>
+          Don't have an account? <span>Register</span>
+        </button>
+      </form>
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/password-manager-sm-img.png"
+        alt="login"
+        className="login-image"
+      />
+    </div>
   );
 };
 

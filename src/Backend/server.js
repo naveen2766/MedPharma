@@ -51,11 +51,11 @@ app.post("/login", async (req, res) => {
   const selectUserQuery = `SELECT * FROM user_details WHERE username = '${username}'`;
   const dbUser = await db.get(selectUserQuery);
   if (dbUser === undefined) {
-    res.json({ status: 400, message: "User not found" });
+    res.json({ status: 300, message: "User not found" });
   } else {
     if (dbUser.password === password)
       res.json({ message: "login successful", dbUser });
-    else res.json({ message: "Invalid username/password" });
+    else res.json({ status: 200, message: "Invalid username/password" });
   }
 });
 

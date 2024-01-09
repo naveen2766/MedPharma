@@ -17,6 +17,7 @@ class App extends Component {
     email: "",
     number: "",
     isSignedIn: false,
+    errMsg: "",
   };
 
   onRegistrationClick = () => {
@@ -57,23 +58,38 @@ class App extends Component {
       username,
       password,
     };
-    await fetch("http://localhost:5000/login", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({
-        data: inputData,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("server response:", data);
-        this.setState({ isSignedIn: true });
+    if (username === "" || password === "")
+      this.setState({ errMsg: "Please fill all fields" });
+    else {
+      await fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          data: inputData,
+        }),
       })
-      .catch((err) => {
-        console.log("Error-w: ", err);
-      });
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data.status === 200);
+          if (data.status === 300) this.setState({ errMsg: "*User NotFound" });
+          else if (data.status === 200) {
+            this.setState({ errMsg: "*Invalid Password" });
+          } else
+            this.setState({
+              isSignedIn: true,
+              username: "",
+              password: "",
+              alternateTabletStatus: true,
+              loginStatus: false,
+              registerClick: false,
+            });
+        })
+        .catch((err) => {
+          this.setState({ errMsg: "" });
+        });
+    }
   };
 
   onLoginClick = () => {
@@ -88,6 +104,10 @@ class App extends Component {
       loginStatus: false,
       alternateTabletStatus: !alternateTabletStatus,
     });
+  };
+
+  logoutClicked = () => {
+    this.setState({ isSignedIn: false });
   };
 
   updateUsername = (username) => {
@@ -115,6 +135,9 @@ class App extends Component {
       isSignedIn,
       loginStatus,
       alternateTabletStatus,
+      errMsg,
+      username,
+      password,
     } = this.state;
     const hide_homepage =
       registerClick === true || loginStatus === true || alternateTabletStatus
@@ -125,6 +148,7 @@ class App extends Component {
         ? "hide-webInfo"
         : "";
     const hideLoginRegButton = isSignedIn ? "hide-webInfo" : "";
+    const hideAltTabletSearchButton = !isSignedIn ? "hide-webInfo" : "";
     return (
       <div>
         <NavigationBar
@@ -132,6 +156,8 @@ class App extends Component {
           onLoginClick={this.onLoginClick}
           onAlternateTabletClick={this.onAlternateTabletClick}
           hideLoginRegButton={hideLoginRegButton}
+          hideAltTabletSearchButton={hideAltTabletSearchButton}
+          logoutClicked={this.logoutClicked}
         />
         <div className={`homepage-container ${hide_homepage}`}>
           <h1 className="heading">MED PHARMA </h1>
@@ -158,6 +184,9 @@ class App extends Component {
             submittedLoginForm={this.submittedLoginForm}
             updateUsername={this.updateUsername}
             updatePassword={this.updatePassword}
+            errMsg={errMsg}
+            username={username}
+            password={password}
           />
         ) : (
           <></>
