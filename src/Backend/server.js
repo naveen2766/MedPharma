@@ -46,7 +46,7 @@ app.post("/reg", async (req, res) => {
 app.post("/login", async (req, res) => {
   const { data } = req.body;
   const { username, password } = data;
-  console.log("details ", data);
+  //   console.log("details ", data);
 
   const selectUserQuery = `SELECT * FROM user_details WHERE username = '${username}'`;
   const dbUser = await db.get(selectUserQuery);
@@ -68,14 +68,14 @@ app.get("/csvdata", async (req, res) => {
         csvData.push(rowData);
       })
       .on("error", function (error) {
-        console.log(error.message);
+        // console.log(error.message);
         res.status(500).json({ error: "Error parsing CSV data" });
       })
       .on("end", function () {
         res.json({ csvData });
       });
   } catch (error) {
-    console.error("Error reading CSV file:", error);
+    // console.error("Error reading CSV file:", error);
     res.status(500).json({ error: "Error reading CSV data" });
   }
 });

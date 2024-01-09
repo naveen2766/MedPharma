@@ -9,6 +9,7 @@ const NavBar = (props) => {
     hideLoginRegButton,
     hideAltTabletSearchButton,
     logoutClicked,
+    homeButtonClick,
   } = props;
 
   const logOut = () => {
@@ -24,6 +25,9 @@ const NavBar = (props) => {
   const alternateTabletsClicked = () => {
     onAlternateTabletClick();
   };
+  const homeClicked = () => {
+    homeButtonClick();
+  };
 
   return (
     <div className="navBarStyle">
@@ -32,6 +36,9 @@ const NavBar = (props) => {
         alt="logo"
         className="logo"
       />
+      <button className={`button-nav buttonStyle`} onClick={homeClicked}>
+        Home
+      </button>
       <button
         className={`button-nav buttonStyle ${hideLoginRegButton}`}
         onClick={registrationClicked}

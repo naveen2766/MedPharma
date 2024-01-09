@@ -18,11 +18,22 @@ class App extends Component {
     number: "",
     isSignedIn: false,
     errMsg: "",
+    homePage: true,
   };
 
   onRegistrationClick = () => {
     const { registerClick } = this.state;
     this.setState({ registerClick: !registerClick, loginStatus: false });
+  };
+
+  homeButtonClick = () => {
+    const { homePage } = this.state;
+    this.setState({
+      homePage: !homePage,
+      registerClick: false,
+      loginStatus: false,
+      alternateTabletStatus: false,
+    });
   };
 
   submittedRegistrationForm = async () => {
@@ -107,7 +118,7 @@ class App extends Component {
   };
 
   logoutClicked = () => {
-    this.setState({ isSignedIn: false });
+    this.setState({ isSignedIn: false, alternateTabletStatus: false });
   };
 
   updateUsername = (username) => {
@@ -158,6 +169,7 @@ class App extends Component {
           hideLoginRegButton={hideLoginRegButton}
           hideAltTabletSearchButton={hideAltTabletSearchButton}
           logoutClicked={this.logoutClicked}
+          homeButtonClick={this.homeButtonClick}
         />
         <div className={`homepage-container ${hide_homepage}`}>
           <h1 className="heading">MED PHARMA </h1>

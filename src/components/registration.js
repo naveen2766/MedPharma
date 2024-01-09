@@ -44,6 +44,11 @@ const Registration = (props) => {
 
   return (
     <div className="container-reg">
+      <img
+        src="https://i.postimg.cc/Zn4q00ZV/12445724-4967621.jpg"
+        alt="registration"
+        className="reg-image"
+      />
       <form className={`reg-form ${hide}`} onSubmit={onSubmit}>
         <h1 className="reg-heading">Registration</h1>
         <div className="mb-3">
@@ -107,11 +112,6 @@ const Registration = (props) => {
         </button>
         {/* <p className="err-msg">{errMsg}</p> */}
       </form>
-      <img
-        src="https://i.postimg.cc/Zn4q00ZV/12445724-4967621.jpg"
-        alt="registration"
-        className="reg-image"
-      />
     </div>
   );
 };

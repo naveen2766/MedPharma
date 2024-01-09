@@ -6,7 +6,8 @@
   align-items: center;
   justify-content: space-evenly;
   padding: 3vw;
-  background-color: #9ba9eb;
+  background-image: url("https://i.postimg.cc/15GtxWX1/login-bg.png");
+  background-size: cover;
 }
 .reg-form {
   display: flex;
