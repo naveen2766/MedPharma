@@ -10,10 +10,15 @@ const NavBar = (props) => {
     hideAltTabletSearchButton,
     logoutClicked,
     homeButtonClick,
+    nearByMedClicked,
   } = props;
 
   const logOut = () => {
     logoutClicked();
+  };
+
+  const nearByMedPharma = () => {
+    nearByMedClicked();
   };
   const registrationClicked = () => {
     onRegistrationClick();
@@ -51,7 +56,10 @@ const NavBar = (props) => {
       >
         Login
       </button>
-      <button className={`button-nav buttonStyle ${hideAltTabletSearchButton}`}>
+      <button
+        className={`button-nav buttonStyle ${hideAltTabletSearchButton}`}
+        onClick={nearByMedPharma}
+      >
         Nearby Pharmacies
       </button>
       <button

@@ -1,6 +1,7 @@
 import Registration from "./components/registration";
 import LoginForm from "./components/Login/login";
 import AlternateTablets from "./components/AlternateTablets";
+import SimpleGoogleMap from "./components/GoogleMap/googlemap";
 import "./App.css";
 
 import { Component } from "react";
@@ -19,6 +20,7 @@ class App extends Component {
     isSignedIn: false,
     errMsg: "",
     homePage: true,
+    map: false,
   };
 
   onRegistrationClick = () => {
@@ -33,6 +35,7 @@ class App extends Component {
       registerClick: false,
       loginStatus: false,
       alternateTabletStatus: false,
+      map: false,
     });
   };
 
@@ -121,6 +124,15 @@ class App extends Component {
     this.setState({ isSignedIn: false, alternateTabletStatus: false });
   };
 
+  nearByMedClicked = () => {
+    const { map } = this.state;
+    this.setState({
+      homePage: false,
+      alternateTabletStatus: false,
+      map: !map,
+    });
+  };
+
   updateUsername = (username) => {
     this.setState({ username: username });
   };
@@ -147,15 +159,21 @@ class App extends Component {
       loginStatus,
       alternateTabletStatus,
       errMsg,
+      homePage,
       username,
       password,
+      map,
     } = this.state;
     const hide_homepage =
-      registerClick === true || loginStatus === true || alternateTabletStatus
+      registerClick || loginStatus || alternateTabletStatus || map
+        ? "hide-homepage"
+        : "";
+    const hideMap =
+      registerClick || loginStatus || alternateTabletStatus || homePage
         ? "hide-homepage"
         : "";
     const webInfo =
-      registerClick === true || loginStatus === true || alternateTabletStatus
+      registerClick || loginStatus || alternateTabletStatus || map
         ? "hide-webInfo"
         : "";
     const hideLoginRegButton = isSignedIn ? "hide-webInfo" : "";
@@ -170,7 +188,9 @@ class App extends Component {
           hideAltTabletSearchButton={hideAltTabletSearchButton}
           logoutClicked={this.logoutClicked}
           homeButtonClick={this.homeButtonClick}
+          nearByMedClicked={this.nearByMedClicked}
         />
+        <SimpleGoogleMap hideMap={hideMap} />
         <div className={`homepage-container ${hide_homepage}`}>
           <h1 className="heading">MED PHARMA </h1>
           <p>Alternative Tablet Search with their Side Effects & Uses</p>
